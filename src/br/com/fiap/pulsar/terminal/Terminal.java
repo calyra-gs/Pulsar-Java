@@ -55,7 +55,19 @@ public class Terminal {
                 descricaoOcorrencia
         );
 
-        imprimirResultado(areaRisco, orgao, morador, gatewayPrincipal, alerta, rotaMensagem, ocorrencia);
+        String resumoOperacional = sistema.gerarResumoOperacional(alerta, ocorrencia, rotaMensagem);
+
+        imprimirResultado(
+                areaRisco,
+                orgao,
+                morador,
+                gatewayPrincipal,
+                gatewayAlternativo,
+                alerta,
+                rotaMensagem,
+                ocorrencia,
+                resumoOperacional
+        );
         scanner.close();
     }
 
@@ -109,26 +121,48 @@ public class Terminal {
     }
 
     private static void imprimirResultado(AreaRisco areaRisco, OrgaoResponsavel orgao, Morador morador,
-                                          GateWay gatewayPrincipal, Alerta alerta, RotaMensagem rotaMensagem,
-                                          Ocorrencia ocorrencia) {
+                                          GateWay gatewayPrincipal, GateWay gatewayAlternativo, Alerta alerta,
+                                          RotaMensagem rotaMensagem, Ocorrencia ocorrencia,
+                                          String resumoOperacional) {
         System.out.println();
         System.out.println("=== RESULTADO DA SIMULACAO ===");
         System.out.println();
         System.out.println("Area de risco cadastrada:");
+        System.out.println("ID: " + areaRisco.getId());
         System.out.println("Bairro: " + areaRisco.getNome());
         System.out.println("Tipo de risco: " + areaRisco.getTipoRisco());
+        System.out.println("Nivel de risco: " + areaRisco.getNivelRisco());
         System.out.println();
         System.out.println("Orgao responsavel:");
-        System.out.println(orgao.getNome());
+        System.out.println("ID: " + orgao.getId());
+        System.out.println("Nome: " + orgao.getNome());
+        System.out.println("Tipo: " + orgao.getTipo());
+        System.out.println("Cidade: " + orgao.getCidade());
         System.out.println();
         System.out.println("Morador:");
-        System.out.println(morador.getNome());
+        System.out.println("ID: " + morador.getId());
+        System.out.println("Nome: " + morador.getNome());
+        System.out.println("Telefone: " + morador.getTelefone());
         System.out.println("Status inicial: " + morador.getStatus());
+        System.out.println("Pessoa vulneravel no local: " + simNao(morador.isPossuiVulneravel()));
+        System.out.println("Area vinculada: " + morador.getAreaRisco().getNome());
+        System.out.println();
+        System.out.println("Gateways cadastrados:");
+        System.out.println(gatewayPrincipal.getNome() + " - ativo: " + simNao(gatewayPrincipal.isAtivo()));
+        System.out.println(gatewayAlternativo.getNome() + " - ativo: " + simNao(gatewayAlternativo.isAtivo()));
         System.out.println();
         System.out.println("Alerta emitido:");
-        System.out.println(alerta.getMensagem());
+        System.out.println("ID: " + alerta.getId());
+        System.out.println("Tipo de desastre: " + alerta.getTipoDesastre());
+        System.out.println("Nivel de risco: " + alerta.getNivelRisco());
+        System.out.println("Mensagem: " + alerta.getMensagem());
+        System.out.println("Area do alerta: " + alerta.getAreaRisco().getNome());
+        System.out.println("Orgao emissor: " + alerta.getOrgaoResponsavel().getNome());
         System.out.println();
         System.out.println("Simulacao da rota:");
+        System.out.println("Origem: " + rotaMensagem.getOrigem());
+        System.out.println("Destino: " + rotaMensagem.getDestino());
+        System.out.println("Quantidade de saltos: " + rotaMensagem.getQuantidadeSaltos());
 
         if (!gatewayPrincipal.isAtivo()) {
             System.out.println("Gateway principal indisponivel.");
@@ -138,13 +172,26 @@ public class Terminal {
         }
         System.out.println();
         System.out.println("Resposta do morador:");
-        System.out.println(ocorrencia.getTipo() + ". " + ocorrencia.getDescricao());
+        System.out.println("ID: " + ocorrencia.getId());
+        System.out.println("Morador vinculado: " + ocorrencia.getMorador().getNome());
+        System.out.println("Tipo: " + ocorrencia.getTipo());
+        System.out.println("Descricao: " + ocorrencia.getDescricao());
         System.out.println();
         System.out.println("Prioridade calculada:");
         System.out.println(ocorrencia.getPrioridade() + " - " + descreverPrioridade(ocorrencia.getPrioridade()));
         System.out.println();
-        System.out.println("Resumo:");
-        System.out.println("Alerta entregue, ocorrencia registrada e resposta retornada a Defesa Civil.");
+        System.out.println("Resumo operacional gerado pelo sistema:");
+        System.out.println(resumoOperacional);
+        System.out.println();
+        System.out.println("Estado final dos objetos:");
+        System.out.println(areaRisco);
+        System.out.println(orgao);
+        System.out.println(morador);
+        System.out.println(gatewayPrincipal);
+        System.out.println(gatewayAlternativo);
+        System.out.println(alerta);
+        System.out.println(rotaMensagem);
+        System.out.println(ocorrencia);
     }
 
     private static String lerTexto(Scanner scanner, String mensagem) {
@@ -181,5 +228,13 @@ public class Terminal {
         } else {
             return "Baixa";
         }
+    }
+
+    private static String simNao(boolean valor) {
+        if (valor) {
+            return "sim";
+        }
+
+        return "nao";
     }
 }
