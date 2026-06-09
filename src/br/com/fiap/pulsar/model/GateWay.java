@@ -6,6 +6,16 @@ public class GateWay {
     private AreaRisco areaAtendida;
     private boolean ativo;
 
+    public GateWay() {
+    }
+
+    public GateWay(int id, String nome, AreaRisco areaAtendida, boolean ativo) {
+        this.id = id;
+        this.nome = nome;
+        this.areaAtendida = areaAtendida;
+        this.ativo = ativo;
+    }
+
     public int getId() {
         return id;
     }

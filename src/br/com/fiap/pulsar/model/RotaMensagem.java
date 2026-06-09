@@ -7,6 +7,17 @@ public class RotaMensagem {
     private String status;
     private int quantidadeSaltos;
 
+    public RotaMensagem() {
+    }
+
+    public RotaMensagem(int id, String origem, String destino, String status, int quantidadeSaltos) {
+        this.id = id;
+        this.origem = origem;
+        this.destino = destino;
+        this.status = status;
+        this.quantidadeSaltos = quantidadeSaltos;
+    }
+
     public int getId() {
         return id;
     }

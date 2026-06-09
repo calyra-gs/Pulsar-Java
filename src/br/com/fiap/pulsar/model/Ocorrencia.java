@@ -7,6 +7,17 @@ public class Ocorrencia {
     private String descricao;
     private int prioridade;
 
+    public Ocorrencia() {
+    }
+
+    public Ocorrencia(int id, Morador morador, String tipo, String descricao, int prioridade) {
+        this.id = id;
+        this.morador = morador;
+        this.tipo = tipo;
+        this.descricao = descricao;
+        this.prioridade = prioridade;
+    }
+
     public int getId() {
         return id;
     }

@@ -6,6 +6,16 @@ public class AreaRisco {
     private String tipoRisco;
     private String nivelRisco;
 
+    public AreaRisco() {
+    }
+
+    public AreaRisco(int id, String nome, String tipoRisco, String nivelRisco) {
+        this.id = id;
+        this.nome = nome;
+        this.tipoRisco = tipoRisco;
+        this.nivelRisco = nivelRisco;
+    }
+
     public int getId() {
         return id;
     }

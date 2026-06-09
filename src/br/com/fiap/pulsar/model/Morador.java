@@ -8,6 +8,19 @@ public class Morador {
     private boolean possuiVulneravel;
     private AreaRisco areaRisco;
 
+    public Morador() {
+    }
+
+    public Morador(int id, String nome, String telefone, String status,
+                   boolean possuiVulneravel, AreaRisco areaRisco) {
+        this.id = id;
+        this.nome = nome;
+        this.telefone = telefone;
+        this.status = status;
+        this.possuiVulneravel = possuiVulneravel;
+        this.areaRisco = areaRisco;
+    }
+
     public int getId() {
         return id;
     }

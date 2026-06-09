@@ -6,6 +6,16 @@ public class OrgaoResponsavel {
     private String tipo;
     private String cidade;
 
+    public OrgaoResponsavel() {
+    }
+
+    public OrgaoResponsavel(int id, String nome, String tipo, String cidade) {
+        this.id = id;
+        this.nome = nome;
+        this.tipo = tipo;
+        this.cidade = cidade;
+    }
+
     public int getId() {
         return id;
     }

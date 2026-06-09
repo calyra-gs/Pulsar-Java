@@ -8,6 +8,19 @@ public class Alerta {
     private OrgaoResponsavel orgaoResponsavel;
     private AreaRisco areaRisco;
 
+    public Alerta() {
+    }
+
+    public Alerta(int id, String tipoDesastre, String nivelRisco, String mensagem,
+                  OrgaoResponsavel orgaoResponsavel, AreaRisco areaRisco) {
+        this.id = id;
+        this.tipoDesastre = tipoDesastre;
+        this.nivelRisco = nivelRisco;
+        this.mensagem = mensagem;
+        this.orgaoResponsavel = orgaoResponsavel;
+        this.areaRisco = areaRisco;
+    }
+
     public int getId() {
         return id;
     }
