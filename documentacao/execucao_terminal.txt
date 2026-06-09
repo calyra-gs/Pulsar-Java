@@ -1,0 +1,85 @@
+=== PULSAR - SIMULACAO JAVA ===
+Preencha as informacoes para simular o funcionamento do Pulsar.
+
+=== AREA DE RISCO ===
+Bairro/area atingida: Tipo de risco: Nivel de risco: 
+=== ORGAO RESPONSAVEL ===
+Nome do orgao: Tipo do orgao: Cidade: 
+=== MORADOR ===
+Nome do morador: Telefone: Status inicial: Ha pessoa vulneravel no local? (s/n): 
+=== GATEWAY PRINCIPAL ===
+Nome do gateway principal: Gateway principal esta ativo? (s/n): 
+=== GATEWAY ALTERNATIVO ===
+Nome do gateway alternativo: Gateway alternativo esta ativo? (s/n): 
+=== EMISSAO DO ALERTA ===
+Tipo de desastre: Mensagem oficial do alerta: 
+=== RESPOSTA DO MORADOR ===
+Exemplos de tipo: Preciso de resgate | Evacuei | Estou seguro
+Tipo da ocorrencia: Descricao da ocorrencia: 
+=== RESULTADO DA SIMULACAO ===
+
+Area de risco cadastrada:
+ID: 1
+Bairro: Jardim das Aguas
+Tipo de risco: Enchente
+Nivel de risco: Alto
+
+Orgao responsavel:
+ID: 1
+Nome: Defesa Civil Municipal
+Tipo: Defesa Civil
+Cidade: Sao Paulo
+
+Morador:
+ID: 1
+Nome: Maria Silva
+Telefone: 11999999999
+Status inicial: Aguardando alerta
+Pessoa vulneravel no local: sim
+Area vinculada: Jardim das Aguas
+
+Gateways cadastrados:
+Gateway Centro - ativo: nao
+Gateway Escola Municipal - ativo: sim
+
+Alerta emitido:
+ID: 1
+Tipo de desastre: Enchente
+Nivel de risco: Alto
+Mensagem: Evacue areas baixas e siga ao ponto seguro.
+Area do alerta: Jardim das Aguas
+Orgao emissor: Defesa Civil Municipal
+
+Simulacao da rota:
+Origem: Defesa Civil Municipal
+Destino: Gateway Escola Municipal
+Quantidade de saltos: 4
+Gateway principal indisponivel.
+Mensagem guardada e reencaminhada pelo gateway alternativo.
+
+Resposta do morador:
+ID: 1
+Morador vinculado: Maria Silva
+Tipo: Preciso de resgate
+Descricao: Idosa acamada no local.
+
+Prioridade calculada:
+1 - Critica
+
+Resumo operacional gerado pelo sistema:
+Resumo Operacional Pulsar
+Alerta: Evacue areas baixas e siga ao ponto seguro.
+Area: Jardim das Aguas
+Ocorrencia: Preciso de resgate
+Prioridade: 1
+Rota: Gateway principal indisponivel. Mensagem guardada e reencaminhada pelo gateway alternativo
+
+Estado final dos objetos:
+AreaRisco{id=1, nome='Jardim das Aguas', tipoRisco='Enchente', nivelRisco='Alto'}
+OrgaoResponsavel{id=1, nome='Defesa Civil Municipal', tipo='Defesa Civil', cidade='Sao Paulo'}
+Morador{id=1, nome='Maria Silva', telefone='11999999999', status='Aguardando alerta', possuiVulneravel=true, areaRisco=AreaRisco{id=1, nome='Jardim das Aguas', tipoRisco='Enchente', nivelRisco='Alto'}}
+GateWay{id=1, nome='Gateway Centro', areaAtendida=AreaRisco{id=1, nome='Jardim das Aguas', tipoRisco='Enchente', nivelRisco='Alto'}, ativo=false}
+GateWay{id=2, nome='Gateway Escola Municipal', areaAtendida=AreaRisco{id=1, nome='Jardim das Aguas', tipoRisco='Enchente', nivelRisco='Alto'}, ativo=true}
+Alerta{id=1, tipoDesastre='Enchente', nivelRisco='Alto', mensagem='Evacue areas baixas e siga ao ponto seguro.', orgaoResponsavel=OrgaoResponsavel{id=1, nome='Defesa Civil Municipal', tipo='Defesa Civil', cidade='Sao Paulo'}, areaRisco=AreaRisco{id=1, nome='Jardim das Aguas', tipoRisco='Enchente', nivelRisco='Alto'}}
+RotaMensagem{id=1, origem='Defesa Civil Municipal', destino='Gateway Escola Municipal', status='Gateway principal indisponivel. Mensagem guardada e reencaminhada pelo gateway alternativo', quantidadeSaltos=4}
+Ocorrencia{id=1, morador=Morador{id=1, nome='Maria Silva', telefone='11999999999', status='Aguardando alerta', possuiVulneravel=true, areaRisco=AreaRisco{id=1, nome='Jardim das Aguas', tipoRisco='Enchente', nivelRisco='Alto'}}, tipo='Preciso de resgate', descricao='Idosa acamada no local.', prioridade=1}
